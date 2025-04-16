@@ -1,4 +1,3 @@
-Let's create a GitHub `README.md` file for the WPProAtoZ Snake plugin version 1.1, based on the provided template for "Enhanced Tools for Gravity Forms" but tailored to the Snake plugin's features, requirements, and details. The README will reflect the plugin’s purpose, functionality, and setup instructions, maintaining the structure and style of the template.
 
 ### README.md Content
 The README will include:
@@ -22,7 +21,7 @@ A fun WordPress plugin that lets your users play the classic Snake game on your 
 
 ## Overview
 
-The **WPProAtoZ Snake** plugin brings the nostalgic Snake game to your WordPress site. Forked from Camil Staps’ original plugin, this updated version adds modern WordPress compatibility, Elementor support, and bug fixes for a seamless gaming experience. Simply add the `[snake]` shortcode to any post or page, and let your visitors enjoy a customizable game of Snake.
+The **WPProAtoZ Snake** plugin brings the nostalgic Snake game to your WordPress site. Forked from Camil Stapsâ€™ original plugin, this updated version adds modern WordPress compatibility, Elementor support, and bug fixes for a seamless gaming experience. Simply add the `[snake]` shortcode to any post or page, and let your visitors enjoy a customizable game of Snake.
 
 Developed by [WPProAtoZ](https://wpproatoz.com), this plugin is perfect for adding a touch of fun to your website.
 
@@ -33,7 +32,7 @@ Developed by [WPProAtoZ](https://wpproatoz.com), this plugin is perfect for addi
 - **Shortcode Integration**: Add `[snake]` to any post, page, or Elementor widget to embed the game.
 - **Customizable Appearance**: Set snake color (`red`, `green`, `blue`), food color (any hex code), and game speed via shortcode attributes.
 - **Responsive Design**: Game grid scales to fit containers, with a maximum width of 600px.
-- **Elementor Compatibility**: Works flawlessly in Elementor’s editor and frontend.
+- **Elementor Compatibility**: Works flawlessly in Elementorâ€™s editor and frontend.
 - **Modernized UI**: Updated CSS with grid layout for better rendering and responsiveness.
 - **Debugging Support**: Includes console logs for troubleshooting food placement and collisions.
 - **Lightweight**: Minimal dependencies (jQuery) and optimized JavaScript for smooth performance.
@@ -63,7 +62,7 @@ Customize the game with these optional attributes:
 ### Requirements
 - **WordPress**: 6.0 or higher
 - **PHP**: 8.0 or higher (8.3+ recommended)
-- **Dependencies**: None (uses WordPress’s built-in jQuery)
+- **Dependencies**: None (uses WordPressâ€™s built-in jQuery)
 
 ---
 
@@ -79,7 +78,7 @@ Customize the game with these optional attributes:
 - **Debugging Logs**: Added console logs for food placement and snake movement to aid troubleshooting.
 
 ### Version 1.0
-- Initial forked version from Camil Staps’ Snake plugin.
+- Initial forked version from Camil Stapsâ€™ Snake plugin.
 
 ---
 
@@ -87,7 +86,7 @@ Customize the game with these optional attributes:
 - **Shortcode**: Add `[snake]` to a post/page and verify the game loads.
 - **Gameplay**: Start the game, move the snake, eat food, and confirm score updates and snake growth.
 - **Attributes**: Test `[snake color="green" foodcolor="#ff0000" timeout="150"]` for customization.
-- **Elementor**: Add the shortcode via Elementor’s shortcode widget and check rendering in editor and frontend.
+- **Elementor**: Add the shortcode via Elementorâ€™s shortcode widget and check rendering in editor and frontend.
 - **Debugging**: Enable `WP_DEBUG` in `wp-config.php` and check browser console for errors or logs:
   ```php
   define('WP_DEBUG', true);
@@ -138,7 +137,7 @@ Check out the plugin in action at [WPProAtoZ.com](https://wpproatoz.com).
 
 ### Details
 - **Badges**: Reflect version 1.1, WordPress 6.0+, PHP 8.0+, and GPLv2 license.
-- **Overview**: Highlights the plugin’s purpose (fun Snake game) and fork history.
+- **Overview**: Highlights the pluginâ€™s purpose (fun Snake game) and fork history.
 - **Features**: Lists key functionalities like shortcode usage, customization, and Elementor compatibility.
 - **Configuration**: Explains how to use the shortcode and attributes, with minimal admin setup.
 - **Changelog**: Summarizes version 1.1 fixes (asset paths, JavaScript bugs, CSS, Elementor) and mentions version 1.0.
@@ -162,7 +161,7 @@ Check out the plugin in action at [WPProAtoZ.com](https://wpproatoz.com).
    - Create a new release on GitHub tagged `1.1`, attaching the zip file.
    - Update the release notes with the changelog from `readme.txt` or `README.md`.
 3. **Test update**:
-   - On your test site, verify the plugin updates from 1.0 to 1.1 via WordPress’s update system (uses `Update URI` in `snake.php`).
+   - On your test site, verify the plugin updates from 1.0 to 1.1 via WordPressâ€™s update system (uses `Update URI` in `snake.php`).
 4. **Verify README**:
    - Check the rendered README on GitHub to ensure badges and links work.
    - Test links like `https://wpproatoz.com` and `mailto:support@wpproatoz.com`.
