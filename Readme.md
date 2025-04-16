@@ -1,16 +1,4 @@
 
-### README.md Content
-The README will include:
-- Plugin overview and features (shortcode-based Snake game, Elementor compatibility).
-- Installation and configuration instructions.
-- Changelog for version 1.1, summarizing fixes and improvements.
-- Testing and support details.
-- Links to the GitHub repository and WPProAtoZ website.
-- Badges for version, WordPress, PHP, and license.
-
-Below is the complete `README.md` file, wrapped in an `<xaiArtifact>` tag with a new `artifact_id` since this is a new file not previously provided.
-
-
 # WPProAtoZ Snake
 
 ![Plugin Version](https://img.shields.io/badge/version-1.1-blue.svg) ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg) ![PHP](https://img.shields.io/badge/PHP-8.0%2B-blue.svg) ![License](https://img.shields.io/badge/license-GPLv2-green.svg)
