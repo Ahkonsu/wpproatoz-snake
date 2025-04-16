@@ -1,84 +1,121 @@
 <?php
 /*
-Plugin Name: Snake
-Plugin URI: http://wordpress.camilstaps.nl/plugins/snake/
+Plugin Name: WPProAtoZ Snake
 Description: Let your users play snake on your website!
-Version: 1.0
-Author: Camil Staps
-Author URI: http://camilstaps.nl
-License: GPL2
-
-Copyright 2013 Camil Staps  (email : info@camilstaps.nl)
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
-published by the Free Software Foundation.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
+Version: 1.1
+Author: WPProAtoZ.com / John Overall (Forked from Camil Staps https://github.com/wp-plugins/snake)
+Requires at least: 6.0
+Requires PHP: 8.0
+License: GPLv2 or later
+Author URI: https://wpproatoz.com
+Plugin URI: https://wpproatoz.com/wp-pro-a-to-z-plugins-available/
+Text Domain: wpproatoz-snake
+Update URI: https://github.com/Ahkonsu/wpproatoz-snake/releases
+GitHub Plugin URI: https://github.com/Ahkonsu/wpproatoz-snake/releases
+GitHub Branch: main
+Forked From: Snake
 */
 
-register_activation_hook(__FILE__,'snake_install');
-function snake_install() {
-	add_option('snake_rounded_borders',false,'','yes');
+// Prevent direct access.
+if (!defined('ABSPATH')) {
+    exit;
 }
 
-register_deactivation_hook(__FILE__, 'snake_remove' );
+register_activation_hook(__FILE__, 'snake_install');
+function snake_install() {
+    add_option('snake_rounded_borders', false, '', 'yes');
+}
+
+register_deactivation_hook(__FILE__, 'snake_remove');
 function snake_remove() {
-	delete_option('snake_rounded_borders');
+    delete_option('snake_rounded_borders');
 }
 
 /* ADMIN MENU */
 add_action('admin_menu', 'snake_admin_menu');
 function snake_admin_menu() {
-	add_options_page('Snake', 'Snake', 'administrator','snake', 'snake_option_page');
+    add_options_page('Snake', 'Snake', 'manage_options', 'snake', 'snake_option_page');
 }
+
 function snake_option_page() {
-	?>
-	<h1>Snake</h1>
-	<h2>How can I insert snake?</h2>
-	<p>It's really easy. The only thing you have to do is adding the <code>[snake]</code> shortcode to your post. Give it a try!</p>
-	<h3>Shortcode variables</h3>
-	<p>This shortcode accepts variables, like this: <code>[snake color=blue]</code>. This would make the color of the snake blue. Here's an overview of the variables you can use:</p>
-	<ul>
-		<li><code>color</code>: set the color of the snake. Accepted values are <code>red</code>, <code>green</code> and <code>blue</code>. Default: <code>red</code>.</li>
-		<li><code>foodcolor</code>: set the color of the food. Accepted values are any color definitions (<code>#ff0000</code> for red, e.g.). Default: <code>orange</code>.</li>
-		<li><code>timeout</code>: set the timeout for the snake to walk. You need to enter an integer, this will be the timeout in milliseconds. Default: <code>200</code>. It is highly recommended to keep this value above 100, since slower computers might not be able to handle the game with a low timeout.</li>
-	</ul>
-	<h3>Example</h3>
-	<p><code>[snake color=green foodcolor=red timeout=100]</code></p>
-	<p>This would give you a green snake, red food and a timeout of 100 milliseconds.</p>
-	<h2>Who am I?</h2>
-	<p>I'm Camil Staps, a freelance webdeveloper & WordPress specialist. You can check out my website at <a href="http://www.camilstaps.nl/">camilstaps.nl</a>, or my WordPress shack at <a href="http://wordpress.camilstaps.nl">wordpress.camilstaps.nl</a>.</p>
-	<?php
+    ?>
+    <div class="wrap">
+        <h1>Snake</h1>
+        <h2>How to Insert Snake</h2>
+        <p>Add the <code>[snake]</code> shortcode to any post or page. Compatible with Elementor!</p>
+        <h3>Shortcode Attributes</h3>
+        <p>Use attributes like <code>[snake color="blue"]</code>:</p>
+        <ul>
+            <li><code>color</code>: Snake color (<code>red</code>, <code>green</code>, <code>blue</code>). Default: <code>red</code>.</li>
+            <li><code>foodcolor</code>: Food color (e.g., <code>#ff0000</code>). Default: <code>orange</code>.</li>
+            <li><code>timeout</code>: Snake speed in milliseconds (integer, min 100). Default: <code>200</code>.</li>
+        </ul>
+        <h3>Example</h3>
+        <p><code>[snake color="green" foodcolor="red" timeout="150"]</code></p>
+        <h2>Why This Fork?</h2>
+        <p>Bringing back the fun to WordPress with modern compatibility!</p>
+    </div>
+    <?php
 }
 
 /* SHORTCODE */
-
 function playSnake($atts) {
-	wp_enqueue_style('snake',plugins_url().'/snake/snake.css');
-	wp_enqueue_script('snake',plugins_url().'/snake/snake.js',array('jquery'));
-	
-	if (is_array($atts))
-		wp_localize_script( 'snake', 'snakeSettings', $atts );
-	else 
-		wp_localize_script( 'snake', 'snakeSettings', array() );
-	
-	$return = '<div id="snakeContainer">';
-	$return .= '<span class="snakeLabel"><span class="snakeButton" onclick="snakeStart();">Start</span></span>';
-	$return .= '<span class="snakeLabel">Score: <span class="snakeInput" id="snakeScore">0</span></span>';
-	$return .= '<span class="snakeLabel"><span class="snakeText" id="snakeMessage">Press the start button to begin.</span></span>';
-	//$return .= '<span class="snakeLabel snakeLabelRight"><span class="snakeText"><a href="http://wordpress.camilstaps.nl/plugins/snake" target="_blank">Snake</a> by <a href="http://www.camilstaps.nl/" target="_blank">Camil Staps</a></span></span>';
-	$return .= '<div id="snake"></div>';
-	$return .= '</div><br style="clear:both;"/>';
-	return $return;
+    // Define defaults and sanitize attributes.
+    $atts = shortcode_atts(
+        array(
+            'color' => 'red',
+            'foodcolor' => 'orange',
+            'timeout' => 200,
+        ),
+        $atts,
+        'snake'
+    );
+
+    // Validate attributes.
+    $atts['color'] = in_array($atts['color'], ['red', 'green', 'blue']) ? $atts['color'] : 'red';
+    $atts['foodcolor'] = sanitize_hex_color($atts['foodcolor']) ?: 'orange';
+    $atts['timeout'] = max(100, absint($atts['timeout']));
+
+    // Enqueue assets.
+    wp_enqueue_style('wpproatoz-snake', plugin_dir_url(__FILE__) . 'snake.css', [], '1.1');
+    wp_enqueue_script('wpproatoz-snake', plugin_dir_url(__FILE__) . 'snake.js', ['jquery'], '1.1', true);
+
+    // Pass settings to JavaScript.
+    $settings = array(
+        'color' => $atts['color'],
+        'foodcolor' => $atts['foodcolor'],
+        'timeout' => $atts['timeout'],
+        'roundedborders' => get_option('snake_rounded_borders', false) ? 'true' : 'false',
+    );
+    wp_localize_script('wpproatoz-snake', 'snakeSettings', $settings);
+
+    // Output game container.
+    $output = '<div id="snakeContainer" class="wpproatoz-snake-container">';
+    $output .= '<span class="snakeLabel"><span class="snakeButton" onclick="snakeStart();">Start</span></span>';
+    $output .= '<span class="snakeLabel">Score: <span class="snakeInput" id="snakeScore">0</span></span>';
+    $output .= '<span class="snakeLabel"><span class="snakeText" id="snakeMessage">Press the start button to begin.</span></span>';
+    $output .= '<div id="snake" class="wpproatoz-snake"></div>';
+    $output .= '</div>';
+
+    return $output;
 }
-add_shortcode('snake','playSnake');
-?>
+add_shortcode('snake', 'playSnake');
+
+// Elementor compatibility.
+add_action('wp_footer', 'snake_elementor_compatibility');
+function snake_elementor_compatibility() {
+    if (did_action('elementor/frontend/after_enqueue_scripts')) {
+        ?>
+        <script>
+            jQuery(document).ready(function($) {
+                if (typeof snakeBuildField === 'function') {
+                    $('.wpproatoz-snake').each(function() {
+                        snakeBuildField();
+                        snakeClearField();
+                    });
+                }
+            });
+        </script>
+        <?php
+    }
+}

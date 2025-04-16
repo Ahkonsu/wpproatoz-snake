@@ -1,68 +1,56 @@
-div#snakeContainer {
-	background-color: #ccc;
-	clear: both;
-	display: block;
-	outline: 1px solid black;
-	padding: 0 0 1px 1px;
+.wpproatoz-snake-container {
+    background-color: #ccc;
+    outline: 1px solid black;
+    padding: 1px;
+    box-sizing: border-box;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-div#snake {
-	background-color: transparent;
-	border-color: #000;
-	border-style: solid;
-	border-width: 1px 0 0 0;
-	display: block;
-	height: 100px;
-	width: 100px;
+.wpproatoz-snake {
+    background-color: transparent;
+    border: 1px solid #000;
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    gap: 1px;
 }
 
-div.snake_cell {
-	display: inline-block;
-	float: left;
-	margin: 1px 1px 0 0;
+.snake_cell {
+    background-color: #fff;
+    aspect-ratio: 1 / 1;
 }
 
-span.snakeLabel {
-	border-color: #000;
-	border-style: solid;
-	border-width: 0 1px 0 0;
-	display: inline-block;
-	font-size: 12px;
-	padding: 1px 5px;
+.snakeLabel {
+    display: inline-block;
+    font-size: 12px;
+    padding: 1px 5px;
+    border-right: 1px solid #000;
 }
 
-span.snakeLabelRight {
-	border-width: 0 0 0 1px;
-	float: right;
+.snakeInput {
+    background-color: #fff;
+    border: 1px solid black;
+    display: inline-block;
+    min-width: 35px;
+    padding: 0 2px;
+    text-align: right;
 }
 
-span.snakeInput {
-	background-color: #fff;
-	border: 1px solid black;
-	display: inline-block;
-	min-width: 35px;
-	padding: 0 2px;
-	text-align: right;
+.snakeText {
+    border: 1px solid transparent;
+    display: inline-block;
+    padding: 0 2px;
 }
 
-span.snakeText {
-	border: 1px solid transparent;
-	display: inline-block;
-	padding: 0 2px;
+.snakeButton {
+    background-color: #faa;
+    border: 1px solid black;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 4px;
 }
 
-span.snakeButton {
-	background-color: #faa;
-	border: 1px solid black;
-	cursor: pointer;
-	display: inline-block;
-	padding: 0 4px;
-}
-
-span.snakeButton:active {
-	background-color: #fbb;
-	border: 1px solid black;
-	cursor: pointer;
-	display: inline-block;
-	padding: 0 4px;
+.snakeButton:active {
+    background-color: #fbb;
 }
